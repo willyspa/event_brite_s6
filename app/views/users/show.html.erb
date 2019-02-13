@@ -1,10 +1,10 @@
 <div style="height:100px"></div>
-
 <h1>PROFIL</h1>
 
 
 <ul>
-  <% if user_signed_in? %>
+  <% if current_user.id == params[:id].to_i %>
+
     <li>
       first_name : <%= current_user.first_name %>
     </li>
@@ -23,12 +23,18 @@
     <li>
       <%= link_to "Edit email / password", edit_user_registration_path %>
     </li>
+
   <% else %>
+
     <li>
-      <%= link_to "Sign in", new_user_session_path %>
+    first_name : <%= @user.first_name %>
     </li>
     <li>
-      <%= link_to "Sign up", new_user_registration_path %>
+    last_name : <%= @user.last_name %>
     </li>
-  <% end %>
-</ul>
+    <li>
+    description : <%= @user.description %>
+
+    </li>
+    <% end %>
+    </ul>

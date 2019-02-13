@@ -5,12 +5,21 @@ class EventController < ApplicationController
     @event_array = Event.all
   end
 
-  #j instancie un event pour le form_tag
+  def show
+    puts "$" * 60
+    puts params[:id]
+    puts "$" * 60
+    @event = Event.find(params[:id])
+    puts "$" * 60
+    @admin = User.all
+  end
+
+  #instancie un event pour le form_tag
   def new
     @event = Event.new
   end
 
-  # bug il faut corrigé le parametre datetime 
+  # bug il faut corrigé le parametre datetime
   def create
     puts "k"*60
     puts params

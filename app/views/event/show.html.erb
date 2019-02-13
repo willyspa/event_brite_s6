@@ -1,0 +1,11 @@
+<div style="height:100px"></div>
+
+<h1><p><%= @event.title %><h1>
+<p><h3>Event by <%= @admin.find_by(id:@event.admin_event_id).first_name %> <%=@admin.find_by(id:@event.admin_event_id).last_name %></h3><br>
+<b>Description: </b><%= @event.description %></p>
+<b>location: </b><%= @event.location %></p>
+
+<b>start_date: </b><%= @event.start_date %></p>
+<b>duration: </b><%= @event.duration %></p>
+<b>price: </b><%= @event.price %> €</p>
+<b>number of participant </b><%= @event.participant_id.count %> €</p>
