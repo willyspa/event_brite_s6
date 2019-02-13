@@ -8,7 +8,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.integer :price
       t.string :location
 
-      t.references :participant, index: true
+      t.references :attendance, index: true
       t.references :admin_event, index: true
 
 
