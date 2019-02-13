@@ -1,0 +1,18 @@
+<div style="height:100px"></div>
+<h1>EVENTS</h1>
+
+<% @event_array.each do |e| %>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+
+      <h5 class="card-title"><b>title: </b><%= e.title %></h5>
+      <h5 class="card-text"><b>content:</b> <%= e.description %></h5>
+      <h5 class="card-text"><b>start_date:</b> <%= e.start_date %></h5>
+      <h5 class="card-text"><b>start_date:</b> <%= e.price %></h5>
+      <h5 class="card-text"><b>start_date:</b> <%= e.location %></h5>
+      <h5 class="card-text"><b>admin:</b> <%= User.find_by(id:e.admin_event_id).first_name %>-<%= User.find_by(id:e.admin_event_id).last_name %></h5>
+
+    </div>
+  </div>
+<%end%>

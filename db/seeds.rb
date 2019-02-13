@@ -26,10 +26,10 @@ puts ""
 puts "_______________________________"
 puts ""
 sleep(1.5)
-
-15.times do 
+mdp = Faker::Internet.password(8)
+15.times do
   mdp = Faker::Internet.password(8)
-  user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::TvShows::SiliconValley.quote, email: Faker::Internet.email, encrypted_password: mdp)
+  user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::TvShows::SiliconValley.quote, email: Faker::Internet.email, password: mdp, password_confirmation: mdp)
   puts ""
   puts "user #{user.first_name} #{user.last_name} email : #{user.email}"
   sleep(0.05)
@@ -42,6 +42,7 @@ end
 sleep(1)
 
 10.times do
+
   puts ""
   user = User.all.sample
   nb = Faker::Number.between(5, 1000)
@@ -54,7 +55,7 @@ end
 
 sleep(1)
 
-20.times do 
+20.times do
   user = User.all.sample
   event = Event.all.sample
   attendance = Attendance.create!(participant_id: user.id, event_id: event.id, stripe_customer_id: Faker::Number.between(0, 2000))
