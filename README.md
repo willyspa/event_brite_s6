@@ -2,7 +2,7 @@
 
 # Event PROJECT
 
-~~ Cynthia @Yacinth ~~ William @Willyspa
+~~ Cynthia @Yacinth ~~ William @Willyspa ~~ aliya @a1iya
 
 ## Ruby version
 
@@ -12,7 +12,7 @@ ruby 2.5.1
 
 # Got to Heroku website
 
-not yet
+ https://eventbritethp.herokuapp.com
 
 # Or do like always with this steps :
 
