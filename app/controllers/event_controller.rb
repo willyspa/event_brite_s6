@@ -15,11 +15,15 @@ class EventController < ApplicationController
     @event = Event.find(params[:id])
     puts "$" * 60
     @admin = User.all
+    @participant = User.all
+    @attendances = Attendance.all
+
   end
 
   #instancie un event pour le form_tag
   def new
     @event = Event.new
+
   end
 
   # bug il faut corrigé le parametre datetime

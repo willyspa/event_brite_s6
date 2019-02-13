@@ -8,4 +8,4 @@
 <b>start_date: </b><%= @event.start_date %></p>
 <b>duration: </b><%= @event.duration %></p>
 <b>price: </b><%= @event.price %> €</p>
-<b>number of participant </b><%= @event.participant_id %> </p>
+<b>number of participant: </b><%=  @attendances.where(:event_id => params[:id]).count %> </p>

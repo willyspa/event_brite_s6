@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html>
-
-
   <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -10,7 +8,6 @@
     <title>TestActionMailer</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -20,7 +17,6 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -30,16 +26,18 @@
           <a class="nav-link" href="<%=  new_event_path %>">Create Event</a>
         </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-
             <%#on verifie si il y a une session, method provenant de la gem devise %>
             <%# on affiche Log in sign in ou profile log out en fonction de la session%>
             <% if user_signed_in? %>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %></a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
                 <a class="dropdown-item" href=""><%= link_to "Profile", user_path(current_user.id) %></a>
                 <a class="dropdown-item" href=""><%= link_to "Sign out", destroy_user_session_path, method: :delete %></a>
             <% else %>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connection</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
                 <a class="dropdown-item" href=""><%= link_to "Sign in", new_user_session_path %></a>
                 <a class="dropdown-item" href=""><%= link_to "Sign up", new_user_registration_path %></a>
             <% end %>
@@ -54,12 +52,6 @@
   </nav>
   <header>
   <body>
-
-
-
-
-
-
     <%= yield %>
   </body>
 </html>
