@@ -1,58 +1,58 @@
-<div style="height:100px"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <br><br><br>
 
-<div class="col-lg-8 offset-lg-2 firm-group">
-    <h1><b>Create an event<b></h1>
-</div>
-<br>
-<%= form_tag url_for(action: 'create'), method: "post" do %>
-  <div class="col-lg-8 offset-lg-2 firm-group">
+      <%= form_tag url_for(action: 'create'), method: "post", html: { class: "form-signin mt-3" } do %>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Create an event</h1>
+        <div class="form-group">
+          <%= label_tag 'date_time' %><br>
+          <%= select_datetime Time.now, prefix: :start_date %>
+        </div>
+        <br>
 
-      <%= label_tag 'date_time' %><br>
-      <%= select_datetime Date.today, :prefix => :start_date %>
+        <div class="form-group">
+          <%= label_tag 'duration' %>
+          <%= text_field_tag 'duration', @event.duration, class: "form-control", placeholder: "Enter the duration of the event" %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= label_tag 'title' %>
+          <%= text_field_tag 'title', @event.title, class: "form-control", placeholder: "Enter the title of the event" %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= label_tag 'description' %>
+          <%= text_field_tag 'description', @event.description, class: "form-control", placeholder: "Enter the description of the event" %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= label_tag 'price' %>
+          <%= number_field 'price', @event.price, class: "form-control", placeholder: "put a price" %>
 
-  </div>
-  <br>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= label_tag 'location' %>
+          <%= text_field_tag 'location', @event.location, class: "form-control", placeholder: "choose a place" %>
+        </div>
+        <br>
 
-  <div class="col-lg-8 offset-lg-2 firm-group">
-    <%= label_tag 'duration' %>
-    <%= text_field_tag 'duration', @event.duration, class: "form-control", placeholder: "Enter the duration of the event" %>
-  </div>
-  <br>
-  <div class="col-lg-8 offset-lg-2 firm-group">
-    <%= label_tag 'title' %>
-    <%= text_field_tag 'title', @event.title, class: "form-control", placeholder: "Enter the title of the event" %>
-  </div>
-  <br>
-  <div class="col-lg-8 offset-lg-2 firm-group">
-    <%= label_tag 'description' %>
-    <%= text_field_tag 'description', @event.description, class: "form-control", placeholder: "Enter the description of the event" %>
-  </div>
-  <br>
-  <div class="col-lg-8 offset-lg-2 firm-group">
-    <%= label_tag 'price' %>
-    <%= number_field 'price', @event.price, class: "form-control", placeholder: "put a price" %>
+        <div class="actions mt-5">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <%= submit_tag "Create", class: "btn btn-lg btn-primary btn-block" %>
+        </div>
+      <% end %>
 
+      <br>
+      <% if @event.errors.any? %>
+        <p>Nous n'avons pas réussi à créer votre event pour la (ou les) raison(s) suivante(s) :</p>
+        <ul>
+          <% @event.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
   </div>
-  <br>
-  <div class="col-lg-8 offset-lg-2 firm-group">
-    <%= label_tag 'location' %>
-    <%= text_field_tag 'location', @event.location, class: "form-control", placeholder: "choose a place" %>
-  </div>
-  <br>
-
-  <div class="d-flex justify-content-center">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <%= submit_tag "Create", class: "btn btn-primary"%>
-  </div>
-<% end %>
-
-<br>
-<% if @event.errors.any? %>
-  <p>Nous n'avons pas réussi à créer votre event pour la (ou les) raison(s) suivante(s) :</p>
-  <ul>
-    <% @event.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
 </div>

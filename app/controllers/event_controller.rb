@@ -1,4 +1,7 @@
 class EventController < ApplicationController
+
+  before_action :authenticate_user!, only: [:new]
+
   #je viens charger tous les instances de event dans @event_array
   #puis je les affiches dans la view de event associé à la methode index
   def index
