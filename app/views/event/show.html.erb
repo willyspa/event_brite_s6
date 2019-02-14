@@ -6,35 +6,35 @@
 <b>Description: </b><%= @event.description %></p>
 </li>
 <ul class="list-group">
-<li class="list-group-item"><b>location: </b><%= @event.location %></li>
+<li class="list-group-item"><b>Location: </b><%= @event.location %></li>
 
-<li class="list-group-item"><b>start_date: </b><%= @event.start_date %></li>
-<li class="list-group-item"><b>duration: </b><%= @event.duration %></li>
-<li class="list-group-item"><b>price: </b><%= @event.price %> €</li>
+<li class="list-group-item"><b>Date: </b><%= @event.start_date.strftime("%m/%d/%Y") %></li>
+<li class="list-group-item"><b>Duration: </b><%= @event.duration %></li>
+<li class="list-group-item"><b>Price: </b><%= @event.price %> €</li>
 
 
 <% if user_signed_in? %>
-  <% if current_user.id.to_i != @event.admin_event_id %>
-                    <div class="btn-group">
-                      <a class="btn btn-outline-primary btn-sm" href="<%=  new_attendance_path(:event_id => @event.id)%>" role="button">Joint this event &raquo;</a>
-                    </div>
-  <%elsif  session[:user_id].nil? %>
-                      <div class="btn-group">
-                      <a class="btn btn-outline-primary btn-sm" href="<%=  new_user_session_path%>" role="button">Joint this event &raquo;</a>
-                    </div>
-  <%end%>
-<% else session[:user_id].nil? %>
-                      <div class="btn-group">
-                      <a class="btn btn-outline-primary btn-sm" href="<%=  new_user_session_path%>" role="button">Joint this event &raquo;</a>
-                    </div>
+ <% if current_user.id.to_i != @event.admin_event_id %>
+                   <div class="btn-group">
+                     <a class="btn btn-outline-primary btn-sm" href="<%=  new_attendance_path(:event_id => @event.id)%>" role="button">Joint this event &raquo;</a>
+                   </div>
+
+ <%end%>
+<% elsif session[:user_id].nil? %>
+                     <div class="btn-group">
+                     <a class="btn btn-outline-primary btn-sm" href="<%=  new_user_session_path%>" role="button">Joint this event &raquo;</a>
+                   </div>
+<% else user_signed_in? %>
+   <% if current_user.id.to_i== @event.admin_event_id %>
+<%end%>
 <%end%>
 
-  <% if user_signed_in? %>
-    <% if current_user.id.to_i== @event.admin_event_id %>
+ <% if user_signed_in? %>
+   <% if current_user.id.to_i== @event.admin_event_id %>
 
-    <%= link_to "mon espace événement", attendances_path(:event_id => @event.id, :admin_event_id => @event.admin_event_id), :method => :get %>
-    <%else%>
-    <%end%>
-  <% else %>
-  <% end %>
-</div>
+   <%= link_to "mon espace événement", attendances_path(:event_id => @event.id, :admin_event_id => @event.admin_event_id), :method => :get %>
+   <%else%>
+   <%end%>
+ <% else %>
+ <% end %>
+</div> 
