@@ -6,13 +6,7 @@ class AttendancesController < ApplicationController
     @event = Event.where(id:params[:event_id])
     @admin = User.where(id:params[:admin_event_id])
     puts "E"*100
-    @participants = Attendance.where(event_id: params[:event_id])
-    puts @participants
-    @event = Event.find(params[:event_id])
   end
-
-
-
 
 
   def new
