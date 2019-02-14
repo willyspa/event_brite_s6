@@ -28,7 +28,7 @@ class AttendancesController < ApplicationController
         puts "if true"*20
 
       @attendance.save
-      redirect_to event_path
+      redirect_to(root_path)
 
     else
       render :new
