@@ -1,0 +1,16 @@
+<br><br><br>
+<br><br>
+<% @event.each do |a|%>
+<h3>Voici la liste des participants à votre event "<%= Event.find_by(id:a.id).title %>" :</h1>
+<%end%>
+<% @attendance.reverse.each do |e| %>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+
+      <h5 class="card-text"><b>participant:</b> <%= User.find_by(id:e.participant_id).first_name %></h5>
+
+      <%= link_to "En savoir plus sur le participant", user_path(e.participant_id), method: :get %>
+    </div>
+  </div>
+<%end%>

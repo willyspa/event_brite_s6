@@ -28,7 +28,7 @@
         <br>
         <div class="form-group">
           <%= label_tag 'price' %>
-          <%= number_field 'price', @event.price, class: "form-control", placeholder: "put a price" %>
+          <%= text_field_tag 'price', @event.price.to_i, class: "form-control", placeholder: "put a price" %>
 
         </div>
         <br>

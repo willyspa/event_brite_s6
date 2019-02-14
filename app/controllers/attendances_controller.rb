@@ -1,11 +1,11 @@
 class AttendancesController < ApplicationController
 
-  class AttendancesController < ApplicationController
-
   def index
-    @participants = Attendance.where(event_id: params[:event_id])
-    puts @participants
-    @event = Event.find(params[:event_id])
+    puts "Xindex_controller_attendances"*20
+    @attendance = Attendance.where(event_id:params[:event_id])
+    @event = Event.where(id:params[:event_id])
+    @admin = User.where(id:params[:admin_event_id])
+    puts "E"*100
   end
 
   def new
@@ -29,7 +29,7 @@ class AttendancesController < ApplicationController
 
   def update
     @attendance = Attendance.find(params[:id])
-    if @attendance.update(model_params)
+    if @attendance.update(stripe_customer_id:params[:stripe_customer_id],participant_id:current_user.id,event_id:params[:event_id])
       redirect_to(event_path)
     else
       render :edit
@@ -41,4 +41,4 @@ class AttendancesController < ApplicationController
   redirect_to event_path
 end
 
-end
+

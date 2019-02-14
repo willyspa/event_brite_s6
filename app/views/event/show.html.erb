@@ -8,4 +8,11 @@
 <b>start_date: </b><%= @event.start_date %></p>
 <b>duration: </b><%= @event.duration %></p>
 <b>price: </b><%= @event.price %> €</p>
-<b>number of participant: </b><%=  @attendances.where(:event_id => params[:id]).count %> </p>
+
+<%= button_to "Join", { :action => "new" }, :method => :post %>
+      <%= link_to "Joint this event", attendances_path, :method => :post %>
+
+  <% if current_user.to_i== @event.admin_event_id %>
+    <%= link_to "mon espace événement", attendances_path(:event_id => @event.id, :admin_event_id => @event.admin_event_id), :method => :get %>
+  <% else %>
+  <% end %>
