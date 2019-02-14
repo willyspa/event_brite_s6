@@ -21,7 +21,7 @@ class AttendancesController < ApplicationController
   def create
     puts event_id:params[:event_id]
     puts "attendance def create"*20
-    @attendance = Attendance.new(stripe_customer_id:params[:stripe_customer_id],participant_id:current_user.id,event_id:3)
+    @attendance = Attendance.new(stripe_customer_id:params[:stripe_customer_id],participant_id:current_user.id,event_id:Event.last.id)
     @event = Event.where(id:params[:event_id])
 
     if @payment_validated=true
