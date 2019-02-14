@@ -30,13 +30,13 @@
             <%# on affiche Log in sign in ou profile log out en fonction de la session%>
             <% if user_signed_in? %>
                 <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %></a>
+                <a class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %></a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                 <a class="dropdown-item" href=""><%= link_to "Profile", user_path(current_user.id) %></a>
                 <a class="dropdown-item" href=""><%= link_to "Sign out", destroy_user_session_path, method: :delete %></a>
             <% else %>
                 <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connection</a>
+                <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Connection</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                 <a class="dropdown-item" href=""><%= link_to "Sign in", new_user_session_path %></a>
                 <a class="dropdown-item" href=""><%= link_to "Sign up", new_user_registration_path %></a>
@@ -44,10 +44,6 @@
           </div>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
     </div>
   </nav>
   <header>

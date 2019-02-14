@@ -9,8 +9,8 @@
 <b>duration: </b><%= @event.duration %></p>
 <b>price: </b><%= @event.price %> €</p>
 
-<%= button_to "Join", { :action => "new" }, :method => :post %>
-      <%= link_to "Joint this event", attendances_path, :method => :post %>
+
+      <%= link_to "Joint this event", new_attendance_path(:event_id => @event.id), :method => :get %><br>
 
   <% if current_user.id.to_i == @event.admin_event_id %>
     <%= link_to "mon espace événement", attendances_path(:event_id => @event.id, :admin_event_id => @event.admin_event_id), :method => :get %>

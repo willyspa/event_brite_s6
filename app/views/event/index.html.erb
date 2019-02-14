@@ -1,22 +1,53 @@
-<div style="height:100px"></div>
-<h1>EVENTS</h1>
+<!doctype html>
+<link href="jumbotron.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="album.css" rel="stylesheet">
+  <body>
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+<main role="main">
+  <br><br>
 
-<% @event.reverse.each do |e| %>
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Discover, live, learn, have fun !</h1>
+          <p class="lead text-muted">Create your own event to share your lifestyle ! What do you want to do ?</p>
+          <p>
+          <p><a class="btn btn-primary btn-lg" href="<%=  new_event_path %>" role="button">Create event &raquo;</a></p>
+          </p>
+        </div>
+      </section>
 
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+          <% @event.reverse.each do |e| %>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                <small class="text-muted"></b> <%= e.start_date.strftime("%m/%d/%Y") %></small>
 
-      <h5 class="card-title"><b>title: </b><%= e.title %></h5>
-      <h5 class="card-text"><b>content:</b> <%= e.description %></h5>
-      <h5 class="card-text"><b>start_date:</b> <%= e.start_date %></h5>
-      <h5 class="card-text"><b>start_date:</b> <%= e.price %></h5>
-      <h5 class="card-text"><b>start_date:</b> <%= e.location %></h5>
-      <h5 class="card-text"><b>admin:</b> <%= User.find_by(id:e.admin_event_id).first_name %>-<%= User.find_by(id:e.admin_event_id).last_name %></h5>
+                  <p class="card-title"><b>Event de  <%= User.find_by(id:e.admin_event_id).first_name %>-<%= User.find_by(id:e.admin_event_id).last_name %> : </b><%= e.title %></p>
+                  <p class="card-text"><%= e.description %></p>
 
-      <a style="color: #ff00ff" href="../event/<%= e.id %>" class="card-link">More about the event</a><br>
-      <a style="color: #ff00ff" href="../users/<%=User.find_by(id:e.admin_event_id).id%>" class="card-link">More about the admin</a><br>
 
-      <%= link_to "En savoir plus sur l'admin", user_path(id:e.admin_event_id), method: :show %>
-    </div>
-  </div>
-<%end%>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <a class="btn btn-outline-primary btn-sm" href="<%=  event_path(id:e.id)%>" role="button">More about the event &raquo;</a>
+                    </div>
+                  <small class="text-muted"><b>prix:</b> <%= e.price %>€</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <%end%>
+
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer class="container">
+      <p>&copy; Willyacinliya</p>
+    </footer>
+
+  </body>
+</html>

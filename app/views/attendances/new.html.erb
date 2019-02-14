@@ -1,2 +1,67 @@
 <h1>Attendances#new</h1>
 <p>Find me in app/views/attendances/new.html.erb</p>
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="container">
+            <div class="row">
+                <div class="text-center">
+                    <h1>Ticket information</h1>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-md-9"><em><%= @event.title %></em></td>
+                            <td class="col-md-1 text-center"> 1 </td>
+                            <td class="col-md-1 text-center">$<%= @event.price %></td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td class="text-center">
+                            <p>
+                                <strong>Total: </strong>
+                            </p>
+                            <p>
+                            <td class="text-center">
+                            <p>
+                                <strong>$<%= @event.price %></strong>
+                            </p>
+                        </tr>
+                        <tr>
+                          <td></td>
+                        <td colspan="2" class="text-center">
+                        <p>
+                          <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+                          <article>
+                            <% if flash[:error].present? %>
+                              <div id="error_explanation">
+                                <p><%= flash[:error] %></p>
+                              </div>
+                            <% end %>
+                          </article>
+                          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                  data-description="Buy the ticket"
+                                  data-amount="<%= @event.price*100 %>"
+                                  data-locale="auto"></script>
+                        <% end %>
+                        </td>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

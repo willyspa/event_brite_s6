@@ -6,10 +6,18 @@ class AttendancesController < ApplicationController
     @event = Event.where(id:params[:event_id])
     @admin = User.where(id:params[:admin_event_id])
     puts "E"*100
+    @participants = Attendance.where(event_id: params[:event_id])
+    puts @participants
+    @event = Event.find(params[:event_id])
   end
+
+
+
+
 
   def new
     @attendance = Attendance.new
+    @event = Event.find(params[:event_id])
   end
 
   def edit
@@ -20,6 +28,8 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.new(stripe_customer_id:params[:stripe_customer_id],participant_id:current_user.id,event_id:params[:event_id])
     if @attendance.save
       @payment_validated=true
+      attendance = Attendance.create!(participant_id: current_user.id, event_id: @event.id, stripe_customer_id:params[:stripeToken])
+      attendance.save
       redirect_to event_path
 
     else
@@ -40,5 +50,3 @@ class AttendancesController < ApplicationController
   flash[:error] = e.message
   redirect_to event_path
 end
-
-
