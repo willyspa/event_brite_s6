@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :event do
     association :admin_event, factory: :user
-    association :participant_id, factory: :user
+    association :attendances_id, factory: :user
     start_date { Faker::Date.forward(5) }
     duration { 5 }
     title { Faker::Book.title }
@@ -10,4 +10,3 @@ FactoryBot.define do
     location { "Fresnes" }
   end
 end
-

@@ -28,11 +28,25 @@ class EventController < ApplicationController
 
   # bug il faut corrigé le parametre datetime
   def create
-    puts "k"*60
-    puts params
-    puts "k"*60
+    puts "*"*60
+    puts params[:start_date]
 
-    e = Event.new(start_date:params[start_date],duration:params[:duration],title:params[:title],description:params[:description],price:params[:price],location:params[:location],admin_event_id:current_user.id)
+
+    puts params
+
+    puts "k"*60
+    puts admin_event_id:current_user.id
+
+
+    date = params[:start_date]
+    e = Event.new(start_date:DateTime.new(date[:year].to_i,date[:month].to_i,date[:day].to_i,date[:hour].to_i,date[:minute].to_i,0),duration:params[:duration],title:params[:title],description:params[:description],price:params[:price],location:params[:location])
+    puts "k"*60
+    puts e.admin_event_id
+    puts "k"*60
+    e.instance_variable_set(:@admin_event_id, current_user.id)
+    puts "k"*60
+    puts e.admin_event_id
+    puts "k"*60
 
   if e.save
     redirect_to(root_path)
