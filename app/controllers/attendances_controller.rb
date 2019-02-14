@@ -19,11 +19,15 @@ class AttendancesController < ApplicationController
   end
 
   def create
-    @attendance = Attendance.new(stripe_customer_id:params[:stripe_customer_id],participant_id:current_user.id,event_id:params[:event_id])
-    if @attendance.save
-      @payment_validated=true
-      attendance = Attendance.create!(participant_id: current_user.id, event_id: @event.id, stripe_customer_id:params[:stripeToken])
-      attendance.save
+    puts event_id:params[:event_id]
+    puts "attendance def create"*20
+    @attendance = Attendance.new(stripe_customer_id:params[:stripe_customer_id],participant_id:current_user.id,event_id:3)
+    @event = Event.where(id:params[:event_id])
+
+    if @payment_validated=true
+        puts "if true"*20
+
+      @attendance.save
       redirect_to event_path
 
     else
