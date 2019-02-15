@@ -14,18 +14,18 @@
 
 
 <% if user_signed_in? %>
- <% if current_user.id.to_i != @event.admin_event_id %>
-                   <div class="btn-group">
-                     <a class="btn btn-outline-primary btn-sm" href="<%=  new_attendance_path(:event_id => @event.id)%>" role="button">Joint this event &raquo;</a>
-                   </div>
+  <% if current_user.id.to_i != @event.admin_event_id %>
+                    <div class="btn-group">
+                      <a class="btn btn-outline-primary btn-sm" href="<%=  new_attendance_path(:event_id => @event.id)%>" role="button">Join this event &raquo;</a>
+                    </div>
 
- <%end%>
+  <%end%>
 <% elsif session[:user_id].nil? %>
-                     <div class="btn-group">
-                     <a class="btn btn-outline-primary btn-sm" href="<%=  new_user_session_path%>" role="button">Joint this event &raquo;</a>
-                   </div>
+                      <div class="btn-group">
+                      <a class="btn btn-outline-primary btn-sm" href="<%=  new_user_session_path%>" role="button">Joint this event &raquo;</a>
+                    </div>
 <% else user_signed_in? %>
-   <% if current_user.id.to_i== @event.admin_event_id %>
+    <% if current_user.id.to_i== @event.admin_event_id %>
 <%end%>
 <%end%>
 
